@@ -1,0 +1,552 @@
+/* Estilo para el botón del gestor de equipos en el contenido principal */
+.pokemon-button {
+    background-color: #FFCB05;
+    color: #3466AF;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 25px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.pokemon-button:hover {
+    background-color: #3466AF;
+    color: #FFCB05;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.button-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Estilos para la sección del dashboard */
+.dashboard-section {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dashboard-section h2 {
+    color: #3466AF;
+    margin-bottom: 15px;
+}
+
+.dashboard-section p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.dashboard-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Estilos para el equipo principal */
+.equip-principal {
+    text-align: center;
+}
+
+.pokemon-team {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.pokemon-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    width: 100px;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-5px);
+}
+
+.pokemon-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.pokemon-info {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.pokemon-level {
+    font-size: 0.8rem;
+    color: #666;
+    display: block;
+}
+
+/* Estilos para el modal de equipos */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    overflow: auto;
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 0;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    animation: modalopen 0.5s;
+}
+
+@keyframes modalopen {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #3466AF;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-modal {
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Estilos para los items de equipos en el modal */
+.search-container {
+    margin-bottom: 20px;
+}
+
+#equip-search {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.equips-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.equip-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.equip-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.equip-info {
+    flex: 1;
+}
+
+.equip-info h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #3466AF;
+}
+
+.equip-pokemon-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.equip-pokemon {
+    width: 50px;
+    height: 50px;
+}
+
+.equip-pokemon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.select-equip-btn {
+    background-color: #FFCB05;
+    color: #3466AF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.select-equip-btn:hover {
+    background-color: #3466AF;
+    color: #FFCB05;
+}
+
+.no-equips-message {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+/* Estilos para la sección de batallas */
+.battle-section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contador-badge {
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 2px 6px;
+    position: relative;
+    top: -2px;
+    margin-left: 5px;
+}
+
+/* Estilos para modales de desafíos */
+.desafio-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.desafio-section h3 {
+    margin-bottom: 15px;
+    color: #3b4cca;
+}
+
+.entrenadors-list, .equips-selector {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.entrenador-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.entrenador-item:hover {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.entrenador-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.entrenador-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.entrenador-info {
+    flex-grow: 1;
+}
+
+.entrenador-info h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.select-entrenador-btn, .select-equip-btn {
+    background-color: #3b4cca;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.select-entrenador-btn:hover, .select-equip-btn:hover {
+    background-color: #2a3ba5;
+}
+
+.select-entrenador-btn.active, .select-equip-btn.active {
+    background-color: #ffcb05;
+    color: #3b4cca;
+}
+
+.desafio-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.desafios-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    border-bottom-color: #3b4cca;
+    color: #3b4cca;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.desafio-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.desafio-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.desafio-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.desafio-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.desafio-info {
+    flex-grow: 1;
+}
+
+.desafio-info h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.desafio-fecha {
+    color: #777;
+    font-size: 12px;
+}
+
+.desafio-equipo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.desafio-equipo-nombre {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.desafio-pokemon {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.desafio-pokemon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.desafio-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-aceptar, .btn-rechazar, .btn-cancelar {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-aceptar {
+    background-color: #4caf50;
+    color: white;
+}
+
+.btn-rechazar, .btn-cancelar {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-aceptar:hover {
+    background-color: #388e3c;
+}
+
+.btn-rechazar:hover, .btn-cancelar:hover {
+    background-color: #d32f2f;
+}
+
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.spinning-pokeball {
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.no-desafios-message {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+}
+
+.desafio-info {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.desafio-info-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.desafio-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.desafio-vs-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.desafio-vs-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.desafio-vs-vs {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3b4cca;
+}
