@@ -1,0 +1,134 @@
+# .htaccess para Sapamon
+# Configuración principal del proyecto
+
+# Activar el motor de reescritura
+RewriteEngine On
+
+# Definir la base de reescritura (ruta base del proyecto)
+# Ajusta esto si la aplicación está en un subdirectorio
+# RewriteBase /
+
+# Proteger archivos y directorios específicos
+<FilesMatch "^\.(.*)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Evitar acceso a archivos sensibles
+<FilesMatch "^(composer\.json|composer\.lock|README\.md)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Proteger archivos del sistema
+<FilesMatch "(configuracio\.php)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Proteger directorio de logs
+<FilesMatch "^(logs)/">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Prevenir acceso directo a archivos PHP en ciertos directorios
+RewriteCond %{REQUEST_URI} ^/Model/.*\.php$ [OR]
+RewriteCond %{REQUEST_URI} ^/funcions_combat/.*\.php$
+RewriteRule ^ - [F,L]
+
+# Redirecciones amigables para las páginas principales
+# Página de inicio
+RewriteRule ^home/?$ index.php?controlador=Inici [L,QSA]
+
+# Páginas de autenticación
+RewriteRule ^login/?$ index.php?controlador=Auth&accio=login [L,QSA]
+RewriteRule ^registro/?$ index.php?controlador=Auth&accio=registro [L,QSA]
+RewriteRule ^recuperar/?$ index.php?controlador=Recuperacio [L,QSA]
+
+# Perfil de usuario
+RewriteRule ^perfil/?$ index.php?controlador=Usuari&accio=perfil [L,QSA]
+RewriteRule ^amigos/?$ index.php?controlador=Amics&accio=listar [L,QSA]
+
+# Gestión de equipos
+RewriteRule ^equipos/?$ index.php?controlador=Equip&accio=listar [L,QSA]
+RewriteRule ^equipos/crear/?$ index.php?controlador=Equip&accio=crear [L,QSA]
+RewriteRule ^equipos/editar/([0-9]+)/?$ index.php?controlador=Equip&accio=editar&id=$1 [L,QSA]
+
+# Combates
+RewriteRule ^batallas/?$ index.php?controlador=Batalla&accio=listar [L,QSA]
+RewriteRule ^batallas/nueva/?$ index.php?controlador=Batalla&accio=nueva [L,QSA]
+RewriteRule ^batallas/([0-9]+)/?$ index.php?controlador=Combat&accio=ver&id=$1 [L,QSA]
+
+# Control de caché
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Imágenes
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # Archivos web
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Comprimir archivos para mejorar el rendimiento
+<IfModule mod_deflate.c>
+  # Comprimir contenido HTML, CSS, JavaScript, texto, XML
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/x-javascript application/json
+  
+  # Nivel de compresión
+  DeflateCompressionLevel 9
+</IfModule>
+
+# Establecer zona horaria por defecto
+php_value date.timezone "Europe/Madrid"
+
+# Aumentar límite de tiempo de ejecución para scripts pesados
+php_value max_execution_time 300
+
+# Aumentar límite de memoria para PHP
+php_value memory_limit 128M
+
+# Establecer el conjunto de caracteres predeterminado
+AddDefaultCharset UTF-8
+
+# Deshabilitar listado de directorios
+Options -Indexes
+
+# Permitir uso de archivos .json
+AddType application/json .json
+
+# Manejo de errores personalizado
+ErrorDocument 404 /index.php?controlador=Error&accio=notFound
+ErrorDocument 403 /index.php?controlador=Error&accio=forbidden
+ErrorDocument 500 /index.php?controlador=Error&accio=serverError
+
+# Eliminar el encabezado del servidor por seguridad
+<IfModule mod_headers.c>
+  Header unset Server
+  Header unset X-Powered-By
+  
+  # Prevenir clickjacking
+  Header set X-Frame-Options "SAMEORIGIN"
+  
+  # Activar protección XSS para navegadores
+  Header set X-XSS-Protection "1; mode=block"
+  
+  # Evitar que el navegador detecte el tipo MIME
+  Header set X-Content-Type-Options "nosniff"
+  
+  # Políticas de seguridad de contenido
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://pokeapi.co https://accounts.google.com; connect-src 'self' https://pokeapi.co; img-src 'self' https://raw.githubusercontent.com data:; style-src 'self' 'unsafe-inline';"
+</IfModule>
+
+# Si un archivo o directorio no existe, redirigir al index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L,QSA]
