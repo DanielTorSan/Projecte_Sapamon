@@ -1,139 +1,139 @@
 # SAPAMON
 
-## 📝 Descripción
-Sapamon es una aplicación web inspirada en Pokémon que permite a los usuarios crear equipos personalizados, luchar contra otros jugadores y gestionar amistades. La aplicación integra la famosa [PokeAPI](https://pokeapi.co/) para obtener datos oficiales de los Pokémon, movimientos, tipos y características.
+## 📝 Descripció
+Sapamon és una aplicació web inspirada en Pokémon que permet als usuaris crear equips personalitzats, lluitar contra altres jugadors i gestionar amistats. L'aplicació integra la famosa [PokeAPI](https://pokeapi.co/) per obtenir dades oficials dels Pokémon, moviments, tipus i característiques.
 
-## 🌟 Características Principales
+## 🌟 Característiques Principals
 
-### 🎮 Sistema de combate Pokémon
-- Combates en tiempo real entre jugadores
-- Sistema de turnos
-- Efectos visuales para ataques y cambios de estado
-- Historial de acciones durante la batalla
-- Modo espectador para ver combates de otros usuarios
+### 🎮 Sistema de combat Pokémon
+- Combats en temps real entre jugadors
+- Sistema de torns
+- Efectes visuals per atacs i canvis d'estat
+- Historial d'accions durant la batalla
+- Mode espectador per veure combats d'altres usuaris
 
-### 👥 Gestión de amistades
-- Sistema de búsqueda de usuarios
-- Envío y recepción de solicitudes de amistad
-- Lista de amigos activos
-- Historial de combates con amigos
+### 👥 Gestió d'amistats
+- Sistema de cerca d'usuaris
+- Enviament i recepció de sol·licituds d'amistat
+- Llista d'amics actius
+- Historial de combats amb amics
 
-### 💭 Sistema de chat
-- Chat en tiempo real con amigos
-- Notificaciones de mensajes nuevos
-- Historial de conversaciones
+### 💭 Sistema de xat
+- Xat en temps real amb amics
+- Notificacions de missatges nous
+- Historial de converses
 
-### 🎨 Personalización de avatar
-- Selección de avatar personalizado para tu perfil
+### 🎨 Personalització d'avatar
+- Selecció d'avatar personalitzat pel teu perfil
 
-### 🔐 Sistema de autenticación
-- Registro y login de usuarios
-- Recuperación de contraseña por correo electrónico
-- Integración con Google Auth
+### 🔐 Sistema d'autenticació
+- Registre i login d'usuaris
+- Recuperació de contrasenya per correu electrònic
+- Integració amb Google Auth
 
-## 🔧 APIs Integradas
+## 🔧 APIs Integrades
 
 ### 📊 PokeAPI
-La aplicación utiliza la [PokeAPI](https://pokeapi.co/) para obtener datos oficiales de Pokémon:
+L'aplicació utilitza la [PokeAPI](https://pokeapi.co/) per obtenir dades oficials de Pokémon:
 
-- **Sistema de caché**: Implementamos un sistema de caché en base de datos para evitar solicitudes repetidas a la API, mejorando la velocidad y respetando los límites de uso
-- **Datos utilizados**:
-  - Información básica de Pokémon (nombre, tipos, estadísticas)
-  - Sprites oficiales (integración con el repositorio de sprites oficial)
-  - Movimientos y sus características (poder, precisión, tipo, categoría)
-  - Datos de tipos para calcular efectividad en combate
+- **Sistema de caché**: Implementem un sistema de caché a la base de dades per evitar sol·licituds repetides a l'API, millorant la velocitat i respectant els límits d'ús
+- **Dades utilitzades**:
+  - Informació bàsica de Pokémon (nom, tipus, estadístiques)
+  - Sprites oficials (integració amb el repositori d'sprites oficial)
+  - Moviments i les seves característiques (poder, precisió, tipus, categoria)
+  - Dades de tipus per calcular efectivitat en combat
 
-Ejemplo de uso de PokeAPI en nuestro código:
+Exemple d'ús de PokeAPI en el nostre codi:
 ```php
-// Obtener datos de un Pokémon específico
-$pokeAPIService = new PokeAPIService($conexion);
+// Obtenir dades d'un Pokémon específic
+$pokeAPIService = new PokeAPIService($connexio);
 $pokemonData = $pokeAPIService->getPokemon($pokemonId);
 
-// Obtener sprite del Pokémon
+// Obtenir sprite del Pokémon
 $sprite = $pokemonData['sprites']['front_default'];
 
-// Obtener tipos
-$tipos = array_map(function($tipo) {
-    return $tipo['type']['name'];
+// Obtenir tipus
+$tipus = array_map(function($tipus) {
+    return $tipus['type']['name'];
 }, $pokemonData['types']);
 ```
 
-### 🥊 APIs Propias
-La aplicación cuenta con varias APIs internas para gestionar diferentes funcionalidades:
+### 🥊 APIs Pròpies
+L'aplicació compta amb diverses APIs internes per gestionar diferents funcionalitats:
 
-#### 🏆 API de Combates (batalla_api.php & combat_api.php)
-- Gestión del estado de batallas en tiempo real
-- Sistema de turnos
-- Cálculo de daño según tipo de ataque y defensas
-- Cambio de Pokémon durante el combate
+#### 🏆 API de Combats (batalla_api.php & combat_api.php)
+- Gestió de l'estat de batalles en temps real
+- Sistema de torns
+- Càlcul de dany segons tipus d'atac i defenses
+- Canvi de Pokémon durant el combat
 
-#### 👨‍👩‍👧‍👦 API de Amigos (gestiona_amistat.php & friend_action.php)
-- Gestión de solicitudes de amistad
-- Búsqueda de usuarios
-- Listado de amigos activos
+#### 👨‍👩‍👧‍👦 API d'Amics (gestiona_amistat.php & friend_action.php)
+- Gestió de sol·licituds d'amistat
+- Cerca d'usuaris
+- Llistat d'amics actius
 
-#### 💬 API de Chat (chat_api.php)
-- Envío y recepción de mensajes
-- Notificaciones de mensajes no leídos
-- Historial de conversaciones
+#### 💬 API de Xat (chat_api.php)
+- Enviament i recepció de missatges
+- Notificacions de missatges no llegits
+- Historial de converses
 
-#### 🛠️ API de Equipos (gestio_equips.php)
-- Creación y gestión de equipos Pokémon
-- Asignación de movimientos a Pokémon
-- Validación de equipos para combate
+#### 🛠️ API d'Equips (gestio_equips.php)
+- Creació i gestió d'equips Pokémon
+- Assignació de moviments a Pokémon
+- Validació d'equips per combat
 
-## 🚀 Estado del Desarrollo
+## 🚀 Estat del Desenvolupament
 
-### ✅ Funcionalidades Implementadas
-- Sistema de autenticación completo
-- Gestión de equipos Pokémon
-- Sistema de combate básico
-- Gestión de amistades
-- Chat entre usuarios
-- Personalización de avatar
+### ✅ Funcionalitats Implementades
+- Sistema d'autenticació complet
+- Gestió d'equips Pokémon
+- Sistema de combat bàsic
+- Gestió d'amistats
+- Xat entre usuaris
+- Personalització d'avatar
 
-### 🔄 En Desarrollo
-- Mejoras en el sistema de combate (efectos visuales avanzados)
-- Implementación de objetos durante el combate
-- Ranking de batallas
-- Torneos con múltiples participantes
-- Sistema de logros y recompensas
+### 🔄 En Desenvolupament
+- Millores en el sistema de combat (efectes visuals avançats)
+- Implementació d'objectes durant el combat
+- Rànquing de batalles
+- Tornejos amb múltiples participants
+- Sistema d'assoliments i recompenses
 
-### 📋 Próximas Características
-- Sistema de comercio de Pokémon entre usuarios
-- Eventos temporales con Pokémon especiales
-- Modo historia con entrenadores IA
-- Personalización avanzada de perfil
+### 📋 Properes Característiques
+- Sistema de comerç de Pokémon entre usuaris
+- Esdeveniments temporals amb Pokémon especials
+- Mode història amb entrenadors IA
+- Personalització avançada de perfil
 
-## 🧰 Tecnologías Utilizadas
+## 🧰 Tecnologies Utilitzades
 - Frontend: HTML5, CSS3, JavaScript (Vanilla)
 - Backend: PHP
-- Base de datos: MySQL
-- Autenticación: Sistema propio + Google Auth
+- Base de dades: MySQL
+- Autenticació: Sistema propi + Google Auth
 - API externa: PokeAPI
 
-## 📦 Estructura del Proyecto
-- **Controlador/**: Archivos PHP que gestionan la lógica de negocio
-  - **js/**: Scripts para el frontend
-  - **funcions_combat/**: Funciones específicas para el sistema de combate
-- **Model/**: Archivos PHP para interactuar con la base de datos
-- **Vista/**: Archivos de vistas y assets
-- **libs/**: Librerías externas (PHPMailer, etc.)
-- **logs/**: Archivos de log para depuración
+## 📦 Estructura del Projecte
+- **Controlador/**: Arxius PHP que gestionen la lògica de negoci
+  - **js/**: Scripts pel frontend
+  - **funcions_combat/**: Funcions específiques pel sistema de combat
+- **Model/**: Arxius PHP per interactuar amb la base de dades
+- **Vista/**: Arxius de vistes i assets
+- **libs/**: Llibreries externes (PHPMailer, etc.)
+- **logs/**: Arxius de log per depuració
 
-## 🔍 Características Especiales
+## 🔍 Característiques Especials
 
-### Sistema de Caché para PokeAPI
-Para optimizar el rendimiento y respetar los límites de la API, implementamos un sistema de caché que almacena localmente las respuestas de la API:
+### Sistema de Caché per PokeAPI
+Per optimitzar el rendiment i respectar els límits de l'API, implementem un sistema de caché que emmagatzema localment les respostes de l'API:
 
 ```php
-// Verificar si existe en caché antes de hacer petición
+// Verificar si existeix a la caché abans de fer petició
 $cached_data = $this->getFromCache($cache_key);
 if ($cached_data !== false) {
     return $cached_data;
 }
 
-// Si no está en caché, hacer petición y guardar resultado
+// Si no està a la caché, fer petició i guardar resultat
 $url = $this->base_url . $endpoint;
 $response = $this->makeApiRequest($url);
 if ($response !== false) {
@@ -141,31 +141,31 @@ if ($response !== false) {
 }
 ```
 
-### Sistema de Combate en Tiempo Real
-El sistema de combate actualiza el estado de la batalla periódicamente mediante llamadas AJAX:
+### Sistema de Combat en Temps Real
+El sistema de combat actualitza l'estat de la batalla periòdicament mitjançant crides AJAX:
 
 ```javascript
-// Iniciar actualización periódica
-function iniciarActualizacionPeriodica() {
+// Iniciar actualització periòdica
+function iniciarActualitzacioPeriodica() {
     intervaloActualizacion = setInterval(() => {
-        actualizarEstadoBatalla();
-    }, 2000); // Actualizar cada 2 segundos
+        actualitzarEstatBatalla();
+    }, 2000); // Actualitzar cada 2 segons
 }
 ```
 
-## 🤝 Contribución
-¿Quieres contribuir al proyecto? ¡Genial! Puedes ayudar de varias formas:
-- Reportando bugs
-- Sugiriendo nuevas características
-- Mejorando la documentación
-- Contribuyendo con código
+## 🤝 Contribució
+Vols contribuir al projecte? Genial! Pots ajudar de diverses formes:
+- Reportant errors
+- Suggerint noves característiques
+- Millorant la documentació
+- Contribuint amb codi
 
-## 📄 Licencia
-Este proyecto está bajo la Licencia MIT.
+## 📄 Llicència
+Aquest projecte està sota la Llicència MIT.
 
-## 👥 Autores
-- [Tu nombre y equipo]
+## 👥 Autors
+- [El teu nom i equip]
 
 ---
 
-© 2025 Sapamon. Todos los derechos reservados.
+© 2025 Sapamon. Tots els drets reservats.
