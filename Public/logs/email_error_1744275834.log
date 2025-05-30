@@ -1,0 +1,4 @@
+Error sending email to d.torres2@sapalomera.cat:
+Message: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+PHPMailer Error: SMTP Error: Could not connect to SMTP host. Failed to connect to serverSMTP server error: Failed to connect to server Additional SMTP info: php_network_getaddresses: getaddrinfo for smtp.gmail.com failed: Host desconocido. 
+Time: 2025-04-10 11:03:54
